@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+	<title>Alunos</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+	<div th:replace="fragmentos/fragmentos :: header"></div>
+	<div class="container">
+		<h2>Lista de alunos cadastrados</h2>
+		<a href="/alunos/inserir" class="btn btn-default">Criar novo aluno..</a>
+		<table class="table" id="tbl-alunos">
+			<thead>
+				<th>Nome do aluno</th>
+				<th>Idade</th>
+				<th>Ações</th>
+			</thead>
+			<tbody>
+				<tr th:each="aluno: ${alunos}">
+					<td th:text="${aluno.nome}"></td>
+					<td th:text="${aluno.idade}"></td>
+					<td>
+						<a th:href="@{/alunos/editar/{id}(id=${aluno.id})}">Editar</a> |
+						<a th:href="@{/alunos/excluir/{id}(id=${aluno.id})}">Excluir</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="fragmentos/fragmentos :: footer"></div>
+	<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"> </script>
+</body>
+</html>
